@@ -9,10 +9,10 @@ builder.Services.AddSingleton<Chessboard>();
 
 var app = builder.Build();
 
-string Chess(Chessboard chessboard)
+async Task Chess(HttpContext context, Chessboard chessboard)
 {
     chessboard.PrintBoard();
-    return "<p>Printed to console!</p>";
+    await context.Response.WriteAsync("<p>Wrote to console!</p>");
 }
 
 app.MapGet("/chess", Chess);
